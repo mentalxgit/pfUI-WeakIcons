@@ -111,25 +111,25 @@ pfUI:RegisterModule("WeakIcons", "vanilla", function()
             args.unit = args.unit or "player"
 
             local br, bg, bb, ba = GetStringColor(pfUI_config.appearance.border.color)
-            local backdrop_highlight = {edgeFile = pfUI.media["img:glow"], edgeSize = 8}
+            local backdrop_highlight = {edgeFile = "Interface\\BUTTONS\\WHITE8X8", tileEdge = true, edgeSize = pfUI.pixel, insets = {left = -pfUI.pixel, right = -pfUI.pixel, top = -pfUI.pixel, bottom = -pfUI.pixel} }
 
             local frameName = "pfWeakIcon_" .. (inactive and "i" or "a") .. "_" .. args.name
             local f = CreateFrame("Frame", frameName, UIParent)
             f:SetWidth(args.size)
-            f:SetHeight(args.size)
+            f:SetHeight(args.size*0.7)
             f:SetPoint("CENTER", UIParent)
 
             f.texture = f:CreateTexture()
-            f.texture:SetTexCoord(0.08, 0.92, 0.08, 0.92)
+            f.texture:SetTexCoord(0.08, 0.92, 0.206, 0.794)
             f.texture:SetAllPoints(f)
             f.texture:SetTexture("")
 
-            f.text = f:CreateFontString()
-            f.text:SetPoint("CENTER", f)
+            f.text = f.backdrop:CreateFontString()
+            f.text:SetPoint("TOP", f.backdrop, 0, 8)
             f.text:SetFont(args.font, (args.unit == "player") and args.bufffontsize or args.debufffontsize, "OUTLINE")
-
+                        
             f.smalltext = f:CreateFontString()
-            f.smalltext:SetPoint("BOTTOMRIGHT", f)
+            f.smalltext:SetPoint("CENTER", f, 0, 0)
             f.smalltext:SetFont(args.font, args.stackfontsize, "OUTLINE")
 
             f.backdrop = CreateFrame("Frame", nil, f)
