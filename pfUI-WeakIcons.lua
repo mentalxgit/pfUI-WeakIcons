@@ -115,28 +115,29 @@ pfUI:RegisterModule("WeakIcons", "vanilla", function()
 
             local frameName = "pfWeakIcon_" .. (inactive and "i" or "a") .. "_" .. args.name
             local f = CreateFrame("Frame", frameName, UIParent)
+			
             f:SetWidth(args.size)
             f:SetHeight(args.size*0.7)
             f:SetPoint("CENTER", UIParent)
+
 
             f.texture = f:CreateTexture()
             f.texture:SetTexCoord(0.08, 0.92, 0.206, 0.794)
             f.texture:SetAllPoints(f)
             f.texture:SetTexture("")
 
-            f.text = f.backdrop:CreateFontString()
-            f.text:SetPoint("TOP", f.backdrop, 0, 8)
-            f.text:SetFont(args.font, (args.unit == "player") and args.bufffontsize or args.debufffontsize, "OUTLINE")
-                        
             f.smalltext = f:CreateFontString()
-            f.smalltext:SetPoint("CENTER", f, 0, 0)
+            f.smalltext:SetPoint("BOTTOMRIGHT", f)
             f.smalltext:SetFont(args.font, args.stackfontsize, "OUTLINE")
 
             f.backdrop = CreateFrame("Frame", nil, f)
             f.backdrop:SetBackdrop(backdrop_highlight)
             f.backdrop:SetBackdropBorderColor(br, bg, bb, ba)
             f.backdrop:SetAllPoints()
-
+			
+	    f.text = f.backdrop:CreateFontString()
+            f.text:SetPoint("TOP", f.backdrop, 0, 8)
+            f.text:SetFont(args.font, (args.unit == "player") and args.bufffontsize or args.debufffontsize, "OUTLINE")
             -----------------------------------------------------------------------------
             -- OnUpdate: update icon based on current aura state.
             -----------------------------------------------------------------------------
